@@ -69,15 +69,11 @@ std::string run(std::string bf, std::string in){
 	return out;
 }
 
-//Generates a random brainfuck program
-std::string gen(){
-	std::string bf = "";
+//n = 8 for all symbols
+//n = 6 to exclude brackets
+char randsym(int n){
 	char a;
-	bool l, r;
-	for (int i = 0; i < 20; i++){
-		l = false;
-		r = false;
-		switch(rand() % 8){
+	switch(rand() % n){
 		case 0:
 			a = '+';
 			break;
@@ -98,25 +94,54 @@ std::string gen(){
 			break;
 		case 6:
 			a = '[';
-			l = true;
 			break;
 		case 7:
 			a = ']';
-			r = true;
 			break;
 		default:
 			break;
 		}
+	return a;
+}
+
+//Generates a random brainfuck program
+std::string gen(){
+	std::string bf = "";
+	char a;
+	for (int i = 0; i < 20; i++){
+		a = randsym();
 		if(i % 2 == 0)
 			bf += a;
 		else
 			bf = a + bf;
-		if(l)
+		if(a == '[')
 			bf += ']';
-		if(r)
+		if(a == ']')
 			bf = '[' + bf;
 	}
 	return bf;
+}
+
+std::string mut(std::string in){
+	char a;
+	int layer;
+	int pos;
+	for(int i = 0; i < in.length(); i++){
+		if(rand() % 15 == 0){
+			a = randsym();
+			if(a == '['){
+				layer = 0;
+				pos = i;
+				while(layer != 0 || in.at(pos) != ']'){
+					if(in.at(pos) == '[')
+						layer ++;
+					if(in.at(pos) == ']')
+						layer --;
+					pos ++;
+				}
+			}
+		}
+	}
 }
 
 //levenshtein distance between two strings
@@ -144,5 +169,9 @@ int dist(std::string a, std::string b){
 
 int main(){
 	srand(time(NULL));
-	std::cout << dist("potatoes", "perderders") << std::endl;
+	std::string str;
+	for(int i = 0; i < 10; i++){
+		str = gen();
+		std::cout << str <<  ' ' << str.length() << std::endl;
+	}
 }
