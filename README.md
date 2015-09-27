@@ -4,3 +4,6 @@ The function bfevo approximates and the test data generator are contained in fun
 
 ###To compile:###
 `make`
+
+###To run:###
+`./bfevo`
