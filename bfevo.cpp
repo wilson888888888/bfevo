@@ -5,6 +5,7 @@
 #include <deque>
 #define MEM 1000000
 
+//runs brainfuck program
 std::string run(std::string bf, std::string in){
 	int pos = 0;
 	int cpos = MEM/2;
@@ -69,6 +70,7 @@ std::string run(std::string bf, std::string in){
 	return out;
 }
 
+//Generates a random brainfuck program
 std::string gen(){
 	std::string bf = "";
 	char a;
