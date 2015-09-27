@@ -1,8 +1,7 @@
 #include "funct.h"
 #include <iostream>
 #include <stdlib.h>
-#include <map>
-#include <deque>
+#include <algorithm>
 #define MEM 1000000
 
 //runs brainfuck program
@@ -120,8 +119,30 @@ std::string gen(){
 	return bf;
 }
 
+//levenshtein distance between two strings
+int dist(std::string a, std::string b){
+	int m = a.length();
+	int n = b.length();
+	int dp[m + 1][n + 1];
+	for(int i = 0; i < m; i++)
+		for(int j = 0; j < n; j++)
+			dp[i][j] = 0;
+	for(int i = 0; i <= m; i++)
+		dp[i][0] = i;
+	for(int i = 0; i <= n; i++)
+		dp[0][i] = i;
+	for(int j = 1; j <= n; j++){		
+		for(int i = 1; i <= m; i++){
+			if(a.at(i - 1) == b.at(j - 1))
+				dp[i][j] = dp[i - 1][j - 1];
+			else
+				dp[i][j] = std::min(dp[i - 1][j] + 1, std::min(dp[i - 1][j - 1] + 1, dp[i][j - 1] + 1));
+		}
+	}
+	return dp[m][n];
+}
+
 int main(){
 	srand(time(NULL));
-	for(int i = 0; i < 10; i++)
-		std::cout << gen() << std::endl;
+	std::cout << dist("potatoes", "perderders") << std::endl;
 }
