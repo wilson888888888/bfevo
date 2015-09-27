@@ -2,6 +2,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <map>
+#include <deque>
 #define MEM 1000000
 
 std::string run(std::string bf, std::string in){
@@ -69,10 +70,56 @@ std::string run(std::string bf, std::string in){
 }
 
 std::string gen(){
-	
+	std::string bf = "";
+	char a;
+	bool l, r;
+	for (int i = 0; i < 20; i++){
+		l = false;
+		r = false;
+		switch(rand() % 8){
+		case 0:
+			a = '+';
+			break;
+		case 1:
+			a = '-';
+			break;
+		case 2:
+			a = '>';
+			break;
+		case 3:
+			a = '<';
+			break;
+		case 4:
+			a = '.';
+			break;
+		case 5:
+			a = ',';
+			break;
+		case 6:
+			a = '[';
+			l = true;
+			break;
+		case 7:
+			a = ']';
+			r = true;
+			break;
+		default:
+			break;
+		}
+		if(i % 2 == 0)
+			bf += a;
+		else
+			bf = a + bf;
+		if(l)
+			bf += ']';
+		if(r)
+			bf = '[' + bf;
+	}
+	return bf;
 }
 
 int main(){
-	std::string bf = "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.";
-	std::cout << run(bf, "C") << std::endl;
+	srand(time(NULL));
+	for(int i = 0; i < 10; i++)
+		std::cout << gen() << std::endl;
 }
