@@ -109,7 +109,7 @@ std::string gen(){
 	std::string bf = "";
 	char a;
 	for (int i = 0; i < 20; i++){
-		a = randsym();
+		a = randsym(8);
 		if(i % 2 == 0)
 			bf += a;
 		else
@@ -122,26 +122,53 @@ std::string gen(){
 	return bf;
 }
 
+//mutates string
+//TODO: insert closing brakcet into string randomly instead of at end
 std::string mut(std::string in){
 	char a;
 	int layer;
 	int pos;
-	for(int i = 0; i < in.length(); i++){
+	std::string out (in);
+	for(int i = 0; i < out.length(); i++){
 		if(rand() % 15 == 0){
-			a = randsym();
-			if(a == '['){
+			a = randsym(8);
+			if(out[i] == '['){
 				layer = 0;
 				pos = i;
-				while(layer != 0 || in.at(pos) != ']'){
-					if(in.at(pos) == '[')
+				pos++;
+				while(layer != 0 || out.at(pos) != ']'){
+					if(out.at(pos) == '[')
 						layer ++;
-					if(in.at(pos) == ']')
+					if(out.at(pos) == ']')
 						layer --;
 					pos ++;
 				}
+				out[pos] = randsym(6);
+			}
+			else if(out[i] == ']'){
+				layer = 0;
+				pos = i;
+				pos--;
+				while(layer != 0 || out.at(pos) != '['){
+					if(out.at(pos) == ']')
+						layer ++;
+					if(out.at(pos) == '[')
+						layer --;
+					pos --;
+				}
+				out[pos] = randsym(6);
+			}
+			out[i] = a;
+			if(a == '['){
+				out += ']';
+			}
+			else if(a == ']'){
+				out = '[' + out;
+				i++;
 			}
 		}
 	}
+	return out;
 }
 
 //levenshtein distance between two strings
@@ -169,9 +196,11 @@ int dist(std::string a, std::string b){
 
 int main(){
 	srand(time(NULL));
-	std::string str;
-	for(int i = 0; i < 10; i++){
-		str = gen();
-		std::cout << str <<  ' ' << str.length() << std::endl;
+	std::string str = gen();
+	std::string mutations [20];
+	std::cout << str << std::endl;
+	for(int i = 0; i < 20; i++){
+		mutations[i] = mut(str);
+		std::cout << mutations[i] << ' ' << i << ' ' << dist(str, mutations[i]) << std::endl;
 	}
 }
