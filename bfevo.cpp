@@ -123,7 +123,6 @@ std::string gen(){
 }
 
 //mutates string
-//TODO: insert closing brakcet into string randomly instead of at end
 std::string mut(std::string in){
 	char a;
 	int layer;
@@ -160,10 +159,10 @@ std::string mut(std::string in){
 			}
 			out[i] = a;
 			if(a == '['){
-				out += ']';
+				out.insert(i + 1 + rand() % (out.length() - i), "]");
 			}
 			else if(a == ']'){
-				out = '[' + out;
+				out.insert(rand() % i, "[");
 				i++;
 			}
 		}

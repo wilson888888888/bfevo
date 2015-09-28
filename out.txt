@@ -1,0 +1,124 @@
+bfevo.cpp: In function ‘std::string run(std::string, std::string)’:
+bfevo.cpp:15:13: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  while (pos < bf.length()){
+             ^
+bfevo.cpp:33:12: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+    if(ipos >= in.length())
+            ^
+bfevo.cpp: In function ‘std::string mut(std::string)’:
+bfevo.cpp:131:19: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  for(int i = 0; i < out.length(); i++){
+                   ^
+bfevo.cpp:162:60: error: no matching function for call to ‘std::basic_string<char>::insert(std::basic_string<char>::size_type, char)’
+     out.insert(pos + 1 + rand() % (out.length() - pos), ']');
+                                                            ^
+In file included from /usr/include/c++/5.2.0/string:52:0,
+                 from funct.h:3,
+                 from bfevo.cpp:1:
+/usr/include/c++/5.2.0/bits/basic_string.h:3599:7: note: candidate: void std::basic_string<_CharT, _Traits, _Alloc>::insert(std::basic_string<_CharT, _Traits, _Alloc>::iterator, std::basic_string<_CharT, _Traits, _Alloc>::size_type, _CharT) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>; std::basic_string<_CharT, _Traits, _Alloc>::iterator = __gnu_cxx::__normal_iterator<char*, std::basic_string<char> >; typename _Alloc::rebind<_CharT>::other::pointer = char*; std::basic_string<_CharT, _Traits, _Alloc>::size_type = long unsigned int]
+       insert(iterator __p, size_type __n, _CharT __c)
+       ^
+/usr/include/c++/5.2.0/bits/basic_string.h:3599:7: note:   candidate expects 3 arguments, 2 provided
+/usr/include/c++/5.2.0/bits/basic_string.h:3616:9: note: candidate: template<class _InputIterator> void std::basic_string<_CharT, _Traits, _Alloc>::insert(std::basic_string<_CharT, _Traits, _Alloc>::iterator, _InputIterator, _InputIterator) [with _InputIterator = _InputIterator; _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]
+         insert(iterator __p, _InputIterator __beg, _InputIterator __end)
+         ^
+/usr/include/c++/5.2.0/bits/basic_string.h:3616:9: note:   template argument deduction/substitution failed:
+bfevo.cpp:162:24: note:   cannot convert ‘(((std::basic_string<char>::size_type)(pos + 1)) + (((std::basic_string<char>::size_type)rand()) % (out.std::basic_string<_CharT, _Traits, _Alloc>::length<char, std::char_traits<char>, std::allocator<char> >() - ((std::basic_string<char>::size_type)pos))))’ (type ‘std::basic_string<char>::size_type {aka long unsigned int}’) to type ‘std::basic_string<char>::iterator {aka __gnu_cxx::__normal_iterator<char*, std::basic_string<char> >}’
+     out.insert(pos + 1 + rand() % (out.length() - pos), ']');
+                        ^
+In file included from /usr/include/c++/5.2.0/string:52:0,
+                 from funct.h:3,
+                 from bfevo.cpp:1:
+/usr/include/c++/5.2.0/bits/basic_string.h:3647:7: note: candidate: std::basic_string<_CharT, _Traits, _Alloc>& std::basic_string<_CharT, _Traits, _Alloc>::insert(std::basic_string<_CharT, _Traits, _Alloc>::size_type, const std::basic_string<_CharT, _Traits, _Alloc>&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>; std::basic_string<_CharT, _Traits, _Alloc>::size_type = long unsigned int]
+       insert(size_type __pos1, const basic_string& __str)
+       ^
+/usr/include/c++/5.2.0/bits/basic_string.h:3647:7: note:   no known conversion for argument 2 from ‘char’ to ‘const std::basic_string<char>&’
+/usr/include/c++/5.2.0/bits/basic_string.h:3669:7: note: candidate: std::basic_string<_CharT, _Traits, _Alloc>& std::basic_string<_CharT, _Traits, _Alloc>::insert(std::basic_string<_CharT, _Traits, _Alloc>::size_type, const std::basic_string<_CharT, _Traits, _Alloc>&, std::basic_string<_CharT, _Traits, _Alloc>::size_type, std::basic_string<_CharT, _Traits, _Alloc>::size_type) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>; std::basic_string<_CharT, _Traits, _Alloc>::size_type = long unsigned int]
+       insert(size_type __pos1, const basic_string& __str,
+       ^
+/usr/include/c++/5.2.0/bits/basic_string.h:3669:7: note:   candidate expects 4 arguments, 2 provided
+In file included from /usr/include/c++/5.2.0/string:53:0,
+                 from funct.h:3,
+                 from bfevo.cpp:1:
+/usr/include/c++/5.2.0/bits/basic_string.tcc:803:6: note: candidate: std::basic_string<_CharT, _Traits, _Alloc>& std::basic_string<_CharT, _Traits, _Alloc>::insert(std::basic_string<_CharT, _Traits, _Alloc>::size_type, const _CharT*, std::basic_string<_CharT, _Traits, _Alloc>::size_type) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>; std::basic_string<_CharT, _Traits, _Alloc>::size_type = long unsigned int]
+      basic_string<_CharT, _Traits, _Alloc>::
+      ^
+/usr/include/c++/5.2.0/bits/basic_string.tcc:803:6: note:   candidate expects 3 arguments, 2 provided
+In file included from /usr/include/c++/5.2.0/string:52:0,
+                 from funct.h:3,
+                 from bfevo.cpp:1:
+/usr/include/c++/5.2.0/bits/basic_string.h:3710:7: note: candidate: std::basic_string<_CharT, _Traits, _Alloc>& std::basic_string<_CharT, _Traits, _Alloc>::insert(std::basic_string<_CharT, _Traits, _Alloc>::size_type, const _CharT*) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>; std::basic_string<_CharT, _Traits, _Alloc>::size_type = long unsigned int] <near match>
+       insert(size_type __pos, const _CharT* __s)
+       ^
+/usr/include/c++/5.2.0/bits/basic_string.h:3710:7: note:   conversion of argument 2 would be ill-formed:
+bfevo.cpp:162:60: error: invalid conversion from ‘char’ to ‘const char*’ [-fpermissive]
+     out.insert(pos + 1 + rand() % (out.length() - pos), ']');
+                                                            ^
+In file included from /usr/include/c++/5.2.0/string:52:0,
+                 from funct.h:3,
+                 from bfevo.cpp:1:
+/usr/include/c++/5.2.0/bits/basic_string.h:3733:7: note: candidate: std::basic_string<_CharT, _Traits, _Alloc>& std::basic_string<_CharT, _Traits, _Alloc>::insert(std::basic_string<_CharT, _Traits, _Alloc>::size_type, std::basic_string<_CharT, _Traits, _Alloc>::size_type, _CharT) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>; std::basic_string<_CharT, _Traits, _Alloc>::size_type = long unsigned int]
+       insert(size_type __pos, size_type __n, _CharT __c)
+       ^
+/usr/include/c++/5.2.0/bits/basic_string.h:3733:7: note:   candidate expects 3 arguments, 2 provided
+/usr/include/c++/5.2.0/bits/basic_string.h:3751:7: note: candidate: std::basic_string<_CharT, _Traits, _Alloc>::iterator std::basic_string<_CharT, _Traits, _Alloc>::insert(std::basic_string<_CharT, _Traits, _Alloc>::iterator, _CharT) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>; std::basic_string<_CharT, _Traits, _Alloc>::iterator = __gnu_cxx::__normal_iterator<char*, std::basic_string<char> >; typename _Alloc::rebind<_CharT>::other::pointer = char*]
+       insert(iterator __p, _CharT __c)
+       ^
+/usr/include/c++/5.2.0/bits/basic_string.h:3751:7: note:   no known conversion for argument 1 from ‘std::basic_string<char>::size_type {aka long unsigned int}’ to ‘std::basic_string<char>::iterator {aka __gnu_cxx::__normal_iterator<char*, std::basic_string<char> >}’
+bfevo.cpp:165:33: error: no matching function for call to ‘std::basic_string<char>::insert(int, char)’
+     out.insert(rand() % pos, '[');
+                                 ^
+In file included from /usr/include/c++/5.2.0/string:52:0,
+                 from funct.h:3,
+                 from bfevo.cpp:1:
+/usr/include/c++/5.2.0/bits/basic_string.h:3599:7: note: candidate: void std::basic_string<_CharT, _Traits, _Alloc>::insert(std::basic_string<_CharT, _Traits, _Alloc>::iterator, std::basic_string<_CharT, _Traits, _Alloc>::size_type, _CharT) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>; std::basic_string<_CharT, _Traits, _Alloc>::iterator = __gnu_cxx::__normal_iterator<char*, std::basic_string<char> >; typename _Alloc::rebind<_CharT>::other::pointer = char*; std::basic_string<_CharT, _Traits, _Alloc>::size_type = long unsigned int]
+       insert(iterator __p, size_type __n, _CharT __c)
+       ^
+/usr/include/c++/5.2.0/bits/basic_string.h:3599:7: note:   candidate expects 3 arguments, 2 provided
+/usr/include/c++/5.2.0/bits/basic_string.h:3616:9: note: candidate: template<class _InputIterator> void std::basic_string<_CharT, _Traits, _Alloc>::insert(std::basic_string<_CharT, _Traits, _Alloc>::iterator, _InputIterator, _InputIterator) [with _InputIterator = _InputIterator; _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]
+         insert(iterator __p, _InputIterator __beg, _InputIterator __end)
+         ^
+/usr/include/c++/5.2.0/bits/basic_string.h:3616:9: note:   template argument deduction/substitution failed:
+bfevo.cpp:165:23: note:   cannot convert ‘(rand() % pos)’ (type ‘int’) to type ‘std::basic_string<char>::iterator {aka __gnu_cxx::__normal_iterator<char*, std::basic_string<char> >}’
+     out.insert(rand() % pos, '[');
+                       ^
+In file included from /usr/include/c++/5.2.0/string:52:0,
+                 from funct.h:3,
+                 from bfevo.cpp:1:
+/usr/include/c++/5.2.0/bits/basic_string.h:3647:7: note: candidate: std::basic_string<_CharT, _Traits, _Alloc>& std::basic_string<_CharT, _Traits, _Alloc>::insert(std::basic_string<_CharT, _Traits, _Alloc>::size_type, const std::basic_string<_CharT, _Traits, _Alloc>&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>; std::basic_string<_CharT, _Traits, _Alloc>::size_type = long unsigned int]
+       insert(size_type __pos1, const basic_string& __str)
+       ^
+/usr/include/c++/5.2.0/bits/basic_string.h:3647:7: note:   no known conversion for argument 2 from ‘char’ to ‘const std::basic_string<char>&’
+/usr/include/c++/5.2.0/bits/basic_string.h:3669:7: note: candidate: std::basic_string<_CharT, _Traits, _Alloc>& std::basic_string<_CharT, _Traits, _Alloc>::insert(std::basic_string<_CharT, _Traits, _Alloc>::size_type, const std::basic_string<_CharT, _Traits, _Alloc>&, std::basic_string<_CharT, _Traits, _Alloc>::size_type, std::basic_string<_CharT, _Traits, _Alloc>::size_type) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>; std::basic_string<_CharT, _Traits, _Alloc>::size_type = long unsigned int]
+       insert(size_type __pos1, const basic_string& __str,
+       ^
+/usr/include/c++/5.2.0/bits/basic_string.h:3669:7: note:   candidate expects 4 arguments, 2 provided
+In file included from /usr/include/c++/5.2.0/string:53:0,
+                 from funct.h:3,
+                 from bfevo.cpp:1:
+/usr/include/c++/5.2.0/bits/basic_string.tcc:803:6: note: candidate: std::basic_string<_CharT, _Traits, _Alloc>& std::basic_string<_CharT, _Traits, _Alloc>::insert(std::basic_string<_CharT, _Traits, _Alloc>::size_type, const _CharT*, std::basic_string<_CharT, _Traits, _Alloc>::size_type) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>; std::basic_string<_CharT, _Traits, _Alloc>::size_type = long unsigned int]
+      basic_string<_CharT, _Traits, _Alloc>::
+      ^
+/usr/include/c++/5.2.0/bits/basic_string.tcc:803:6: note:   candidate expects 3 arguments, 2 provided
+In file included from /usr/include/c++/5.2.0/string:52:0,
+                 from funct.h:3,
+                 from bfevo.cpp:1:
+/usr/include/c++/5.2.0/bits/basic_string.h:3710:7: note: candidate: std::basic_string<_CharT, _Traits, _Alloc>& std::basic_string<_CharT, _Traits, _Alloc>::insert(std::basic_string<_CharT, _Traits, _Alloc>::size_type, const _CharT*) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>; std::basic_string<_CharT, _Traits, _Alloc>::size_type = long unsigned int] <near match>
+       insert(size_type __pos, const _CharT* __s)
+       ^
+/usr/include/c++/5.2.0/bits/basic_string.h:3710:7: note:   conversion of argument 2 would be ill-formed:
+bfevo.cpp:165:33: error: invalid conversion from ‘char’ to ‘const char*’ [-fpermissive]
+     out.insert(rand() % pos, '[');
+                                 ^
+In file included from /usr/include/c++/5.2.0/string:52:0,
+                 from funct.h:3,
+                 from bfevo.cpp:1:
+/usr/include/c++/5.2.0/bits/basic_string.h:3733:7: note: candidate: std::basic_string<_CharT, _Traits, _Alloc>& std::basic_string<_CharT, _Traits, _Alloc>::insert(std::basic_string<_CharT, _Traits, _Alloc>::size_type, std::basic_string<_CharT, _Traits, _Alloc>::size_type, _CharT) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>; std::basic_string<_CharT, _Traits, _Alloc>::size_type = long unsigned int]
+       insert(size_type __pos, size_type __n, _CharT __c)
+       ^
+/usr/include/c++/5.2.0/bits/basic_string.h:3733:7: note:   candidate expects 3 arguments, 2 provided
+/usr/include/c++/5.2.0/bits/basic_string.h:3751:7: note: candidate: std::basic_string<_CharT, _Traits, _Alloc>::iterator std::basic_string<_CharT, _Traits, _Alloc>::insert(std::basic_string<_CharT, _Traits, _Alloc>::iterator, _CharT) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>; std::basic_string<_CharT, _Traits, _Alloc>::iterator = __gnu_cxx::__normal_iterator<char*, std::basic_string<char> >; typename _Alloc::rebind<_CharT>::other::pointer = char*]
+       insert(iterator __p, _CharT __c)
+       ^
+/usr/include/c++/5.2.0/bits/basic_string.h:3751:7: note:   no known conversion for argument 1 from ‘int’ to ‘std::basic_string<char>::iterator {aka __gnu_cxx::__normal_iterator<char*, std::basic_string<char> >}’
+make: *** [all] Error 1
