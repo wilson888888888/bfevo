@@ -4,15 +4,29 @@
 #include <algorithm>
 #define MEM 1000000
 
+struct bf{
+	std::string str;
+	int fit;
+};
+
+bool comp(bf a, bf b){
+	return a.fit < b.fit;
+}
+
 //runs brainfuck program
 std::string run(std::string bf, std::string in){
+	std::cout << "run" << std::endl;	
 	int pos = 0;
 	int cpos = MEM/2;
 	int ipos = 0;
 	int cells[MEM];
 	int layer;
 	std::string out = "";
+	int iter = 0;
 	while (pos < bf.length()){
+		iter ++;
+		if(iter > 100000)
+			break;
 		switch(bf.at(pos)){
 		case '+':
 			cells[cpos]++;
@@ -72,6 +86,7 @@ std::string run(std::string bf, std::string in){
 //n = 8 for all symbols
 //n = 6 to exclude brackets
 char randsym(int n){
+	std::cout << "randsym" << std::endl;
 	char a;
 	switch(rand() % n){
 		case 0:
@@ -106,6 +121,7 @@ char randsym(int n){
 
 //Generates a random brainfuck program
 std::string gen(){
+	std::cout << "gen" << std::endl;
 	std::string bf = "";
 	char a;
 	for (int i = 0; i < 20; i++){
@@ -124,6 +140,7 @@ std::string gen(){
 
 //mutates string
 std::string mut(std::string in){
+	std::cout << "mut" << std::endl;
 	char a;
 	int layer;
 	int pos;
@@ -172,6 +189,7 @@ std::string mut(std::string in){
 
 //levenshtein distance between two strings
 int dist(std::string a, std::string b){
+	std::cout << "dist" << std::endl;
 	int m = a.length();
 	int n = b.length();
 	int dp[m + 1][n + 1];
@@ -193,13 +211,34 @@ int dist(std::string a, std::string b){
 	return dp[m][n];
 }
 
+void evo(int iter, int tests, int m, int n){
+	int tot = m * (n + 1);
+	bf pop [tot];
+	for(int i = 0; i < tot; i++){
+		pop[i].str = gen();
+		pop[i].fit = 0;
+	}
+	std::string testcase;
+	for(int i = 0; i < iter; i++){
+		for(int j = 0; j < tot; j++)
+			pop[j].fit = 0;
+		for(int j = 0; j < tot; j++){
+			for(int k = 0; k < tests; k++){
+				testcase = test();
+				pop[j].fit += dist(f(testcase), run(pop[j].str, testcase));
+			}
+		}
+		std::sort(pop, pop + tot, comp);
+		std::cout << "Iteration " << i << std::endl;
+		for(int j = 0; j < tot; j++)
+			std::cout << pop[j].str << ' ' << pop[j].fit << std::endl;
+		for(int j = m; j < tot; j++)
+			pop[j].str = mut(pop[j % m].str);
+	}
+}
+
 int main(){
 	srand(time(NULL));
-	std::string str = gen();
-	std::string mutations [20];
-	std::cout << str << std::endl;
-	for(int i = 0; i < 20; i++){
-		mutations[i] = mut(str);
-		std::cout << mutations[i] << ' ' << i << ' ' << dist(str, mutations[i]) << std::endl;
-	}
+	evo(10, 10, 3, 2);
+	std::string str;
 }
