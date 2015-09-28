@@ -15,7 +15,6 @@ bool comp(bf a, bf b){
 
 //runs brainfuck program
 std::string run(std::string bf, std::string in){
-	std::cout << "run" << std::endl;	
 	int pos = 0;
 	int cpos = MEM/2;
 	int ipos = 0;
@@ -86,7 +85,6 @@ std::string run(std::string bf, std::string in){
 //n = 8 for all symbols
 //n = 6 to exclude brackets
 char randsym(int n){
-	std::cout << "randsym" << std::endl;
 	char a;
 	switch(rand() % n){
 		case 0:
@@ -121,7 +119,6 @@ char randsym(int n){
 
 //Generates a random brainfuck program
 std::string gen(){
-	std::cout << "gen" << std::endl;
 	std::string bf = "";
 	char a;
 	for (int i = 0; i < 20; i++){
@@ -140,7 +137,6 @@ std::string gen(){
 
 //mutates string
 std::string mut(std::string in){
-	std::cout << "mut" << std::endl;
 	char a;
 	int layer;
 	int pos;
@@ -176,11 +172,17 @@ std::string mut(std::string in){
 			}
 			out[i] = a;
 			if(a == '['){
-				out.insert(i + 1 + rand() % (out.length() - i), "]");
+				if(out.length() - i == 0)
+					out += ']';
+				else
+					out.insert(i + 1 + rand() % (out.length() - i), "]");
 			}
 			else if(a == ']'){
-				out.insert(rand() % i, "[");
-				i++;
+				if(i == 0)
+					out = '[' + out;
+				else
+					out.insert(rand() % i, "[");
+				i++;				
 			}
 		}
 	}
@@ -189,7 +191,6 @@ std::string mut(std::string in){
 
 //levenshtein distance between two strings
 int dist(std::string a, std::string b){
-	std::cout << "dist" << std::endl;
 	int m = a.length();
 	int n = b.length();
 	int dp[m + 1][n + 1];
@@ -240,5 +241,4 @@ void evo(int iter, int tests, int m, int n){
 int main(){
 	srand(time(NULL));
 	evo(10, 10, 3, 2);
-	std::string str;
 }
