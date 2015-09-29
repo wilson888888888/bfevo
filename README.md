@@ -9,7 +9,7 @@ This program generates a certain number of brainfuck codes, and then tests them 
 `make`
 
 ###To run:###
-`./bfevo`
+`./bfevo -i 10000000 -t 1000 -m 3 -n 2`
 
 ###Arguments:###
 ```
