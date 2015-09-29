@@ -1,5 +1,5 @@
 #bfevo#
-Evolutionarilyy generates brainfuck code that approximates a certain function.
+Evolutionarily generates brainfuck code that approximates a certain function.
 The function bfevo approximates and the test data generator are contained in funct.cpp
 
 ###What this actually does:###
