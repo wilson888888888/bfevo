@@ -1,6 +1,7 @@
 #include "funct.h"
 #include <iostream>
 #include <stdlib.h>
+#include <stdio.h>
 #include <algorithm>
 #define MEM 1000000
 
@@ -264,7 +265,23 @@ void evo(int iter, int tests, int m, int n){
 	}
 }
 
-int main(){
+int main(int argc, char* argv[]){
+	int iter = 1000000;
+	int tests = 1000;
+	int m = 3;
+	int n = 2;
+	for(int i = 0; i < argc; i++){
+		if(argv[i][0] == '-'){
+			if(argv[i][1] == 'i')
+				sscanf(argv[i + 1], "%d", &iter);
+			if(argv[i][1] == 't')
+				sscanf(argv[i + 1], "%d", &tests);
+			if(argv[i][1] == 'm')
+				sscanf(argv[i + 1], "%d", &m);
+			if(argv[i][1] == 'n')
+				sscanf(argv[i + 1], "%d", &n);
+		}
+	}
 	srand(time(NULL));
-	evo(1000000, 10, 3, 2);
+	evo(1000000, 1000, 3, 2);
 }
