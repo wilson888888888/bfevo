@@ -15,8 +15,11 @@ struct strnum{
 };
 
 bool comp(bf a, bf b){
-	if(a.fit == b.fit)
+	if(a.fit == b.fit){
+		if(a.time == b.time)
+			return a.str.length() < b.str.length();
 		return a.time < b.time;
+	}
 	return a.fit < b.fit;
 }
 
