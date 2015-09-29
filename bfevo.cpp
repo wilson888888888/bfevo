@@ -283,5 +283,5 @@ int main(int argc, char* argv[]){
 		}
 	}
 	srand(time(NULL));
-	evo(1000000, 1000, 3, 2);
+	evo(1000000, 10, 3, 2);
 }
