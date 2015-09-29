@@ -95,10 +95,11 @@ strnum run(std::string bf, std::string in){
 	return ret;
 }
 
+//n = 9 for blank included
 //n = 8 for all symbols
 //n = 6 to exclude brackets
 char randsym(int n){
-	char a;
+	char a = ' ';
 	switch(rand() % n){
 		case 0:
 			a = '+';
@@ -156,7 +157,7 @@ std::string mut(std::string in){
 	std::string out (in);
 	for(int i = 0; i < out.length(); i++){
 		if(rand() % 15 == 0){
-			a = randsym(8);
+			a = randsym(9);
 			if(out[i] == '['){
 				layer = 0;
 				pos = i;
@@ -183,7 +184,10 @@ std::string mut(std::string in){
 				}
 				out[pos] = randsym(6);
 			}
-			out[i] = a;
+			if(a != ' ')
+				out[i] = a;
+			else
+				out.erase(out.begin() + i);
 			if(a == '['){
 				if(out.length() - i == 0)
 					out += ']';
@@ -198,6 +202,10 @@ std::string mut(std::string in){
 				i++;				
 			}
 		}
+	}
+	for(int i = 0; i < 2; i++){
+		if(rand() % 3 == 0)
+			out.insert(rand() % out.length(), std::string(1, randsym(6)));
 	}
 	return out;
 }
@@ -258,5 +266,5 @@ void evo(int iter, int tests, int m, int n){
 
 int main(){
 	srand(time(NULL));
-	evo(10, 10, 3, 2);
+	evo(1000000, 10, 3, 2);
 }
