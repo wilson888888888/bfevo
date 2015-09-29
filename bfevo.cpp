@@ -6,15 +6,22 @@
 
 struct bf{
 	std::string str;
-	int fit;
+	int fit, time;
+};
+
+struct strnum{
+	std::string str;
+	int n;
 };
 
 bool comp(bf a, bf b){
+	if(a.fit == b.fit)
+		return a.time < b.time;
 	return a.fit < b.fit;
 }
 
 //runs brainfuck program
-std::string run(std::string bf, std::string in){
+strnum run(std::string bf, std::string in){
 	int pos = 0;
 	int cpos = MEM/2;
 	int ipos = 0;
@@ -79,7 +86,10 @@ std::string run(std::string bf, std::string in){
 		}
 		pos++;
 	}
-	return out;
+	strnum ret;
+	ret.str = out;
+	ret.n = iter;
+	return ret;
 }
 
 //n = 8 for all symbols
@@ -215,24 +225,29 @@ int dist(std::string a, std::string b){
 void evo(int iter, int tests, int m, int n){
 	int tot = m * (n + 1);
 	bf pop [tot];
+	strnum res;
 	for(int i = 0; i < tot; i++){
 		pop[i].str = gen();
 		pop[i].fit = 0;
 	}
 	std::string testcase;
 	for(int i = 0; i < iter; i++){
-		for(int j = 0; j < tot; j++)
+		for(int j = 0; j < tot; j++){
 			pop[j].fit = 0;
+			pop[j].time = 0;
+		}
 		for(int j = 0; j < tot; j++){
 			for(int k = 0; k < tests; k++){
 				testcase = test();
-				pop[j].fit += dist(f(testcase), run(pop[j].str, testcase));
+				res = run(pop[j].str, testcase);
+				pop[j].fit += dist(f(testcase), res.str);
+				pop[j].time += res.n;
 			}
 		}
 		std::sort(pop, pop + tot, comp);
 		std::cout << "Iteration " << i << std::endl;
 		for(int j = 0; j < tot; j++)
-			std::cout << pop[j].str << ' ' << pop[j].fit << std::endl;
+			std::cout << pop[j].str << ' ' << pop[j].fit <<  ' ' << pop[j].time << std::endl;
 		for(int j = m; j < tot; j++)
 			pop[j].str = mut(pop[j % m].str);
 	}
