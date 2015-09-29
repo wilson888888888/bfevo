@@ -55,8 +55,9 @@ strnum run(std::string bf, std::string in){
 			break;
 		case ',':
 			if(ipos >= in.length())
-				break;
-			cells[cpos] = in.at(ipos);
+				cells[cpos] = 0;
+			else
+				cells[cpos] = in.at(ipos);
 			ipos++;
 			break;
 		case '[':
